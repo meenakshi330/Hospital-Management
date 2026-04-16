@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Appointment</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .card {
+            background: linear-gradient(135deg, #e3f2fd 0%, #bbdefb 100%);
+            border: none;
+        }
+    </style>
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Edit Appointment</h1>
+
+    <div class="mb-3">
+        <a href="/appointments" class="btn btn-secondary">Back</a>
+    </div>
+
+    <div class="card">
+        <div class="card-body">
+            <form method="POST">
+                {% csrf_token %}
+
+                <div class="mb-3">
+                    <label class="form-label">Doctor</label>
+                    <select name="doctor" class="form-control">
+                        {% for d in doctors %}
+                        <option value="{{ d.id }}" {% if d.id == appointment.doctor.id %}selected{% endif %}>
+                            {{ d.name }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Patient</label>
+                    <select name="patient" class="form-control">
+                        {% for p in patients %}
+                        <option value="{{ p.id }}" {% if p.id == appointment.patient.id %}selected{% endif %}>
+                            {{ p.name }}
+                        </option>
+                        {% endfor %}
+                    </select>
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Appointment Time</label>
+                    <input type="datetime-local" name="appointment_time"
+                           value="{{ appointment.appointment_time|date:'Y-m-d\\TH:i' }}"
+                           class="form-control">
+                </div>
+
+                <div class="mb-3">
+                    <label class="form-label">Status</label>
+                <select name="appointment_status" class="form-control">
+                    <option value="Scheduled" {% if appointment.appointment_status == "Scheduled" %}selected{% endif %}>Scheduled</option>
+                    <option value="Completed" {% if appointment.appointment_status == "Completed" %}selected{% endif %}>Completed</option>
+                    <option value="Cancelled" {% if appointment.appointment_status == "Cancelled" %}selected{% endif %}>Cancelled</option>
+                </select>
+                </div>
+
+                <button type="submit" class="btn btn-primary">Update</button>
+            </form>
+        </div>
+    </div>
+</div>
+</body>
+</html>
