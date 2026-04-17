@@ -25,7 +25,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-_41i@z9e3xtg32si2*vej-9)%tp#c%m7b*-g4o4jhhgu@3r*4u'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ['*']
 
@@ -141,6 +141,7 @@ GEMINI_API_KEY=config("GEMINI_API_KEY")
 # }
 # DEFAULT_FROM_EMAIL = "onboarding@resend.dev"
 
-# AIzaSyDI9MQDraViwCvD4EBrlBgW-7ADWq1OvIA
+
 # projects/768297753515
+
 # 768297753515

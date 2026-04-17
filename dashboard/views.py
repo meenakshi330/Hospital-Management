@@ -6,6 +6,7 @@ from doctors.models import Doctor
 from patients.models import Patient
 import markdown_it
 
+
 # Create your views here.
 @login_required
 def dashboard_home(request):
